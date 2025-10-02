@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Building } from 'lucide-react'
-import { experiences } from '@/data/resume'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslatedExperiences } from '@/hooks/useTranslatedExperiences'
 
 export function ExperienceSection() {
   const { t } = useLanguage()
+  const experiences = useTranslatedExperiences()
   
   return (
     <section id="experience" className="section-padding bg-muted/30">

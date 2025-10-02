@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { personalInfo } from '@/data/resume';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { NoSSR } from '@/components/NoSSR';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,11 +58,24 @@ export default function RootLayout({
                     const attributes = body.attributes;
                     for (let i = attributes.length - 1; i >= 0; i--) {
                       const attr = attributes[i];
-                      if (attr.name.startsWith('inject_') || attr.name.startsWith('data-extension-') || attr.name === 'inject_video_svd') {
+                      if (attr.name.startsWith('inject_') || 
+                          attr.name.startsWith('data-extension-') || 
+                          attr.name === 'inject_video_svd' ||
+                          attr.name.startsWith('data-') && attr.name.includes('extension') ||
+                          attr.name.includes('chrome-extension') ||
+                          attr.name.includes('moz-extension')) {
                         body.removeAttribute(attr.name);
                       }
                     }
                   }
+                  
+                  // Also clean up any extension-added elements
+                  const extensionElements = document.querySelectorAll('[data-extension], [inject_], [data-chrome-extension]');
+                  extensionElements.forEach(el => {
+                    if (el.parentNode) {
+                      el.parentNode.removeChild(el);
+                    }
+                  });
                 } catch (e) {
                   // Ignore errors
                 }
@@ -71,9 +85,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <NoSSR>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </NoSSR>
       </body>
     </html>
   );

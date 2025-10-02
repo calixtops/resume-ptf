@@ -20,7 +20,7 @@ export function ContactSection() {
     e.preventDefault()
     // Create mailto link with form data
     const mailtoLink = `mailto:${personalInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
+      `${t('contact.formName')} ${formData.name}\n${t('contact.formEmail')} ${formData.email}\n\n${t('contact.formMessage')}\n${formData.message}`
     )}`
     window.location.href = mailtoLink
   }
@@ -101,7 +101,7 @@ export function ContactSection() {
             {/* Social Links */}
             <div>
               <h4 className="text-lg font-semibold text-foreground mb-4">
-                Redes Sociais
+                {t('contact.socialNetworks')}
               </h4>
               <div className="flex gap-4">
                 <Button
@@ -110,7 +110,7 @@ export function ContactSection() {
                   className="flex items-center gap-2"
                 >
                   <Linkedin className="h-4 w-4" />
-                  LinkedIn
+                  {t('contact.linkedin')}
                 </Button>
                 <Button
                   variant="outline"
@@ -118,7 +118,7 @@ export function ContactSection() {
                   className="flex items-center gap-2"
                 >
                   <Github className="h-4 w-4" />
-                  GitHub
+                  {t('contact.github')}
                 </Button>
               </div>
             </div>
@@ -133,14 +133,14 @@ export function ContactSection() {
           >
             <div className="bg-card shadow-lg p-8 border border-border">
               <h3 className="text-2xl font-bold text-card-foreground mb-6">
-                Envie uma Mensagem
+                {t('contact.sendMessage')}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Nome
+                      {t('contact.nameLabel')}
                     </label>
                     <input
                       type="text"
@@ -185,9 +185,9 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Mensagem
-                  </label>
+                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                      {t('contact.messageLabel')}
+                    </label>
                   <textarea
                     id="message"
                     name="message"
@@ -204,7 +204,7 @@ export function ContactSection() {
                   className="w-full flex items-center justify-center gap-2"
                 >
                   <Send className="h-4 w-4" />
-                  Enviar Mensagem
+                  {t('contact.sendButton')}
                 </Button>
               </form>
             </div>

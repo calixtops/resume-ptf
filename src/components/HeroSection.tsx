@@ -74,7 +74,7 @@ export function HeroSection() {
                 className="flex items-center gap-2"
               >
                 <Linkedin className="h-4 w-4" />
-                LinkedIn
+                {t('hero.linkedin')}
               </Button>
               <Button
                 variant="outline"
@@ -82,7 +82,7 @@ export function HeroSection() {
                 className="flex items-center gap-2"
               >
                 <Github className="h-4 w-4" />
-                GitHub
+                {t('hero.github')}
               </Button>
               <Button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -101,7 +101,7 @@ export function HeroSection() {
           >
             <div className="bg-card/50 backdrop-blur-sm border border-border p-8">
               <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
-                Competências Técnicas
+                {t('hero.technicalSkills')}
               </h3>
               <div className="grid md:grid-cols-2 gap-8">
                 {Object.entries(skills).map(([category, skillList], index) => (

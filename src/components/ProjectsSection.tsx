@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { ExternalLink, Globe, Code, Zap, Target, Loader2 } from 'lucide-react'
-import { projects } from '@/data/resume'
 import { Button } from './Button'
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslatedProjects } from '@/hooks/useTranslatedProjects'
 
 export function ProjectsSection() {
   const { t } = useLanguage()
+  const projects = useTranslatedProjects()
   const [loadedProjects, setLoadedProjects] = useState<Set<number>>(new Set())
   const [loadingProjects, setLoadingProjects] = useState<Set<number>>(new Set())
   const projectRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -121,7 +122,7 @@ export function ProjectsSection() {
                           className="ml-4 flex items-center gap-2 shrink-0"
                         >
                           <Globe className="h-4 w-4" />
-                          <span className="hidden sm:inline">Ver Projeto</span>
+                          <span className="hidden sm:inline">{t('projects.viewProject')}</span>
                         </Button>
                       )}
                     </div>

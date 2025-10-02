@@ -27,7 +27,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="#home" className="text-2xl font-bold text-foreground">
-              Pedro Silveira
+              {t('common.name')}
             </Link>
           </div>
           

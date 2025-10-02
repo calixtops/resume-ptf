@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { GraduationCap, Calendar } from 'lucide-react'
-import { education } from '@/data/resume'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslatedEducation } from '@/hooks/useTranslatedEducation'
 
 export function EducationSection() {
   const { t } = useLanguage()
+  const education = useTranslatedEducation()
   
   return (
     <section id="education" className="section-padding bg-muted/30">
