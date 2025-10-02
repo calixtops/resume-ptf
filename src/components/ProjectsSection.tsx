@@ -92,7 +92,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              ref={(el) => (projectRefs.current[index] = el)}
+              ref={(el) => { projectRefs.current[index] = el }}
               data-project-index={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
