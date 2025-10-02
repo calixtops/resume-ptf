@@ -133,7 +133,7 @@ export function ContactSection() {
           >
             <div className="bg-card shadow-lg p-8 border border-border">
               <h3 className="text-2xl font-bold text-card-foreground mb-6">
-                {t('contact.sendMessage')}
+                {t('contact.sendMessageTitle')}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">

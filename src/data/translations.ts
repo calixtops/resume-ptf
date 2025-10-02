@@ -238,7 +238,7 @@ export const translations = {
       formEmail: "Email:",
       formMessage: "Mensagem:",
       socialNetworks: "Redes Sociais",
-      sendMessage: "Envie uma Mensagem",
+      sendMessageTitle: "Envie uma Mensagem",
       nameLabel: "Nome",
       messageLabel: "Mensagem",
       sendButton: "Enviar Mensagem"
@@ -497,7 +497,7 @@ export const translations = {
       formEmail: "Email:",
       formMessage: "Message:",
       socialNetworks: "Social Networks",
-      sendMessage: "Send a Message",
+      sendMessageTitle: "Send a Message",
       nameLabel: "Name",
       messageLabel: "Message",
       sendButton: "Send Message"
