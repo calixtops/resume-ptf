@@ -17,9 +17,9 @@ export const personalInfo = {
 
 export const skills = {
   "Data Science": ["Python", "Machine Learning", "Scikit-Learn", "PyTorch", "Pandas", "Seaborn", "Matplotlib", "Environmental Data Analysis"],
-  "Web Development": ["HTML/CSS", "JavaScript", "React", "Next.js", "Dash", "Plotly", "Interactive Dashboards"],
+  "Web Development": ["HTML/CSS", "JavaScript", "TypeScript", "React", "Next.js", "Dash", "Plotly", "Interactive Dashboards", "Leaflet"],
   "Mobile Development": ["Dart", "Flutter"],
-  "Tools & Others": ["Quantum GIS", "SQL", "Matlab", "R", "Geoserver", "PostGIS"]
+  "Tools & Others": ["Quantum GIS", "SQL", "Matlab", "R", "Geoserver", "PostGIS", "SIG", "APIs de Dados Ambientais"]
 };
 
 export const experiences = [
@@ -137,6 +137,19 @@ export const education = [
 ];
 
 export const projects = [
+  {
+    title: "WebSIG Erosão Costeira",
+    description: "Plataforma web interativa para visualização, análise e monitoramento de dados sobre erosão costeira. O sistema integra informações geográficas e ambientais, oferecendo ferramentas avançadas de análise espacial e visualização em mapas para gestores públicos, pesquisadores e técnicos.",
+    technologies: ["JavaScript", "TypeScript", "Leaflet", "APIs de Dados Ambientais", "SIG"],
+    link: "https://erosao-ceara.vercel.app/",
+    features: [
+      "Visualização dinâmica de mapas, camadas ambientais e séries temporais",
+      "Ferramentas para análise espacial, consulta histórica e geração de relatórios",
+      "Integração com bases de dados georreferenciados (SIG)",
+      "Interface intuitiva e responsiva, acessível diretamente via navegador"
+    ],
+    impact: "Apoia o planejamento e tomada de decisões na gestão costeira, facilitando estratégias de mitigação e prevenção da erosão. Utilizada por órgãos públicos, centros de pesquisa e universidades para monitoramento, estudo e gestão ambiental."
+  },
   {
     title: "Dashboard de Correntes Marinhas",
     description: "Dashboard interativo para visualização de dados de correntes marinhas em tempo real, desenvolvido com Python e Dash. O sistema integra dados oceanográficos de múltiplas fontes, permitindo análise dinâmica para operações offshore, pesquisa e monitoramento ambiental.",
