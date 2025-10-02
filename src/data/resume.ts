@@ -170,16 +170,16 @@ export const projects = [
   },
   {
     title: "PEDEA - Plataforma Estadual de Dados Ambientais",
-    description: "Plataforma web completa para apresentação e manipulação de dados ambientais georreferenciados, desenvolvida no âmbito do Programa Cientista Chefe em Meio Ambiente do Ceará.",
+    description: "Contribuição técnica em plataforma web para apresentação e manipulação de dados ambientais georreferenciados, desenvolvida no âmbito do Programa Cientista Chefe em Meio Ambiente do Ceará. Atuação focada em aquisição, organização e manipulação de dados geográficos.",
     technologies: ["React", "Geoserver", "PostGIS", "Python", "Dash"],
     link: "https://pedea.sema.ce.gov.br/portal/",
     features: [
-      "Servidor geográfico para dados ambientais diversos",
-      "Interface web responsiva para consulta de dados",
-      "Integração com sistemas de informação geográfica",
-      "Dashboards interativos para análise de dados ambientais"
+      "Aquisição e padronização de dados ambientais georreferenciados",
+      "Manipulação e organização de bases de dados geográficos",
+      "Integração com sistemas de informação geográfica (SIG)",
+      "Desenvolvimento de dashboards para análise de dados ambientais"
     ],
-    impact: "Centraliza e democratiza o acesso a dados ambientais do Estado do Ceará, facilitando pesquisas científicas e tomada de decisões na gestão ambiental."
+    impact: "Contribuiu para centralizar e democratizar o acesso a dados ambientais do Estado do Ceará, facilitando pesquisas científicas e tomada de decisões na gestão ambiental através do trabalho especializado em manipulação de dados geográficos."
   },
   {
     title: "SIARA - Aplicação Mobile para Energia Eólica",
