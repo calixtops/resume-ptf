@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Calendar } from 'lucide-react'
 import { education } from '@/data/resume'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function EducationSection() {
+  const { t } = useLanguage()
+  
   return (
     <section id="education" className="section-padding bg-muted/30">
       <div className="container-max">
@@ -16,7 +19,7 @@ export function EducationSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Educação
+            {t('education.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto"></div>
         </motion.div>

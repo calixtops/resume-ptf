@@ -5,8 +5,10 @@ import { ExternalLink, Globe, Code, Zap, Target, Loader2 } from 'lucide-react'
 import { projects } from '@/data/resume'
 import { Button } from './Button'
 import { useState, useEffect, useRef } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function ProjectsSection() {
+  const { t } = useLanguage()
   const [loadedProjects, setLoadedProjects] = useState<Set<number>>(new Set())
   const [loadingProjects, setLoadingProjects] = useState<Set<number>>(new Set())
   const projectRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -79,12 +81,11 @@ export function ProjectsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Projetos
+            {t('projects.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Projetos inovadores que desenvolvi, focados em análise de dados, 
-            visualização interativa e aplicações web modernas.
+            {t('projects.subtitle')}
           </p>
         </motion.div>
 
@@ -130,7 +131,7 @@ export function ProjectsSection() {
                       <div className="mb-6">
                         <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                           <Zap className="h-4 w-4 text-primary" />
-                          Principais Funcionalidades
+                          {t('projects.features')}
                         </h4>
                         <ul className="space-y-2">
                           {project.features.slice(0, 3).map((feature, featureIndex) => (
@@ -147,7 +148,7 @@ export function ProjectsSection() {
                     <div className="mb-6">
                       <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                         <Code className="h-4 w-4 text-primary" />
-                        Tecnologias Utilizadas
+                        {t('projects.technologies')}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech, techIndex) => (
@@ -167,7 +168,7 @@ export function ProjectsSection() {
                       <div className="mb-6">
                         <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                           <Target className="h-4 w-4 text-primary" />
-                          Impacto
+                          {t('projects.impact')}
                         </h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                           {project.impact}
@@ -183,7 +184,7 @@ export function ProjectsSection() {
                           className="flex items-center gap-2"
                         >
                           <ExternalLink className="h-4 w-4" />
-                          Acessar Projeto
+                          {t('projects.accessProject')}
                         </Button>
                       )}
                     </div>
@@ -197,7 +198,7 @@ export function ProjectsSection() {
                           <div className="w-full h-full flex items-center justify-center bg-card">
                             <div className="text-center">
                               <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-2" />
-                              <p className="text-sm text-muted-foreground">Carregando preview...</p>
+                              <p className="text-sm text-muted-foreground">{t('projects.loadingPreview')}</p>
                             </div>
                           </div>
                         ) : loadedProjects.has(index) ? (
@@ -215,7 +216,7 @@ export function ProjectsSection() {
                                 <Globe className="h-8 w-8 text-white" />
                               </div>
                               <p className="text-sm text-muted-foreground">
-                                Preview será carregado automaticamente
+                                {t('projects.autoLoadPreview')}
                               </p>
                             </div>
                           </div>
@@ -227,7 +228,7 @@ export function ProjectsSection() {
                           <Globe className="h-16 w-16 text-white" />
                         </div>
                         <p className="text-muted-foreground text-sm">
-                          Projeto em desenvolvimento
+                          {t('projects.projectInDevelopment')}
                         </p>
                       </div>
                     )}

@@ -4,8 +4,11 @@ import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import { personalInfo, skills } from '@/data/resume'
 import { Button } from './Button'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function HeroSection() {
+  const { t, language } = useLanguage()
+  
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/30">
       <div className="container-max section-padding">
@@ -27,7 +30,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
             >
-              {personalInfo.title}
+              {t('hero.title')}
             </motion.h2>
 
             <motion.p
@@ -36,7 +39,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-lg text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed"
             >
-              {personalInfo.summary}
+              {t('hero.description')}
             </motion.p>
 
             <motion.div
@@ -47,7 +50,7 @@ export function HeroSection() {
             >
               <div className="flex items-center gap-2 bg-card/30 px-4 py-2 border border-border">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>{personalInfo.location}</span>
+                <span>{t('hero.location')}</span>
               </div>
               <div className="flex items-center gap-2 bg-card/30 px-4 py-2 border border-border">
                 <Mail className="h-4 w-4 text-primary" />
@@ -84,7 +87,7 @@ export function HeroSection() {
               <Button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Entre em Contato
+                {t('hero.contactMe')}
               </Button>
             </motion.div>
           </motion.div>

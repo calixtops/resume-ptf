@@ -4,19 +4,22 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
+import { LanguageToggle } from './LanguageToggle'
 import { Button } from './Button'
-
-const navigation = [
-  { name: 'Início', href: '#home' },
-  { name: 'Experiência', href: '#experience' },
-  { name: 'Projetos', href: '#projects' },
-  { name: 'Educação', href: '#education' },
-  { name: 'Certificações', href: '#certifications' },
-  { name: 'Contato', href: '#contact' }
-]
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useLanguage()
+
+  const navigation = [
+    { name: t('nav.home'), href: '#home' },
+    { name: t('nav.experience'), href: '#experience' },
+    { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.education'), href: '#education' },
+    { name: t('nav.certifications'), href: '#certifications' },
+    { name: t('nav.contact'), href: '#contact' }
+  ]
 
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
@@ -44,6 +47,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
+            <LanguageToggle />
             <ThemeToggle />
             
             {/* Mobile menu button */}

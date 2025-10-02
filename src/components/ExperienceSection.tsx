@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Building } from 'lucide-react'
 import { experiences } from '@/data/resume'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function ExperienceSection() {
+  const { t } = useLanguage()
+  
   return (
     <section id="experience" className="section-padding bg-muted/30">
       <div className="container-max">
@@ -16,7 +19,7 @@ export function ExperienceSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Experiência Profissional
+            {t('experience.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto"></div>
         </motion.div>

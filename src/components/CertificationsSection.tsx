@@ -4,8 +4,11 @@ import { motion } from 'framer-motion'
 import { Award, ExternalLink } from 'lucide-react'
 import { certifications } from '@/data/resume'
 import { Button } from './Button'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function CertificationsSection() {
+  const { t } = useLanguage()
+  
   return (
     <section id="certifications" className="section-padding bg-background">
       <div className="container-max">
@@ -17,12 +20,11 @@ export function CertificationsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Certificações
+            {t('certifications.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Cursos e certificações que complementam minha formação técnica e 
-            mantêm minhas habilidades sempre atualizadas.
+            {t('certifications.subtitle')}
           </p>
         </motion.div>
 

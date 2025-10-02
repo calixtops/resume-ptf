@@ -5,8 +5,10 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Linkedin, Github } from 'lucide-react'
 import { personalInfo } from '@/data/resume'
 import { Button } from './Button'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function ContactSection() {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,11 +43,11 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Entre em Contato
+            {t('contact.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Interessado em colaborações ou oportunidades? Entre em contato comigo!
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 

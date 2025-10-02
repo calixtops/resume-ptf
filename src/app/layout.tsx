@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { personalInfo } from '@/data/resume';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,7 +71,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
