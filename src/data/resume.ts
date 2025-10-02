@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Pedro Silveira Calixto",
   title: "Data Scientist & Oceanographer",
-  location: "São Paulo, Brasil",
+  location: "Fortaleza, Ceará, Brasil",
   email: "calixtops@gmail.com",
   phone: "+55 85 996564028",
   linkedin: "https://www.linkedin.com/in/calixtops/",
