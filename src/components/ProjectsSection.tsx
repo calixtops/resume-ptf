@@ -1,13 +1,47 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Globe, Code, Zap, Target } from 'lucide-react'
+import { ExternalLink, Globe, Code, Zap, Target, Loader2 } from 'lucide-react'
 import { projects } from '@/data/resume'
 import { Button } from './Button'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null)
+  const [loadedProjects, setLoadedProjects] = useState<Set<number>>(new Set())
+  const [loadingProjects, setLoadingProjects] = useState<Set<number>>(new Set())
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  // Intersection Observer para carregar iframes quando visíveis
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-project-index') || '0')
+            if (!loadedProjects.has(index) && !loadingProjects.has(index)) {
+              setLoadingProjects(prev => new Set(prev).add(index))
+              // Simular carregamento com delay para melhor UX
+              setTimeout(() => {
+                setLoadedProjects(prev => new Set(prev).add(index))
+                setLoadingProjects(prev => {
+                  const newSet = new Set(prev)
+                  newSet.delete(index)
+                  return newSet
+                })
+              }, 1000)
+            }
+          }
+        })
+      },
+      { threshold: 0.3, rootMargin: '50px' }
+    )
+
+    projectRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref)
+    })
+
+    return () => observer.disconnect()
+  }, [loadedProjects, loadingProjects])
 
   const getTechIcon = (tech: string) => {
     const techLower = tech.toLowerCase()
@@ -58,6 +92,8 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
+              ref={(el) => (projectRefs.current[index] = el)}
+              data-project-index={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -150,27 +186,40 @@ export function ProjectsSection() {
                           Acessar Projeto
                         </Button>
                       )}
-                      <Button
-                        variant="outline"
-                        onClick={() => setSelectedProject(selectedProject === index ? null : index)}
-                        className="flex items-center gap-2"
-                      >
-                        <Globe className="h-4 w-4" />
-                        {selectedProject === index ? 'Ocultar Preview' : 'Ver Preview'}
-                      </Button>
                     </div>
                   </div>
 
                   {/* Right side - Preview */}
                   <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 lg:p-10 flex items-center justify-center">
-                    {selectedProject === index && project.link ? (
+                    {project.link ? (
                       <div className="w-full h-96 rounded-xl overflow-hidden shadow-lg border border-border">
-                        <iframe
-                          src={project.link}
-                          className="w-full h-full"
-                          title={`Preview do ${project.title}`}
-                          sandbox="allow-scripts allow-same-origin allow-forms"
-                        />
+                        {loadingProjects.has(index) ? (
+                          <div className="w-full h-full flex items-center justify-center bg-card">
+                            <div className="text-center">
+                              <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-2" />
+                              <p className="text-sm text-muted-foreground">Carregando preview...</p>
+                            </div>
+                          </div>
+                        ) : loadedProjects.has(index) ? (
+                          <iframe
+                            src={project.link}
+                            className="w-full h-full"
+                            title={`Preview do ${project.title}`}
+                            sandbox="allow-scripts allow-same-origin allow-forms"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-card">
+                            <div className="text-center">
+                              <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                                <Globe className="h-8 w-8 text-white" />
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Preview será carregado automaticamente
+                              </p>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     ) : (
                       <div className="text-center">
@@ -178,7 +227,7 @@ export function ProjectsSection() {
                           <Globe className="h-16 w-16 text-white" />
                         </div>
                         <p className="text-muted-foreground text-sm">
-                          Clique em &quot;Ver Preview&quot; para visualizar o projeto
+                          Projeto em desenvolvimento
                         </p>
                       </div>
                     )}
