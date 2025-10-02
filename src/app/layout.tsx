@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { personalInfo } from '@/data/resume';
 import { LanguageProvider } from '@/contexts/LanguageContext';
-import { NoSSR } from '@/components/NoSSR';
+import { ClientOnly } from '@/components/ClientOnly';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,25 +55,47 @@ export default function RootLayout({
                   // Remove any attributes added by browser extensions
                   const body = document.body;
                   if (body) {
-                    const attributes = body.attributes;
-                    for (let i = attributes.length - 1; i >= 0; i--) {
-                      const attr = attributes[i];
+                    const attributes = Array.from(body.attributes);
+                    attributes.forEach(attr => {
                       if (attr.name.startsWith('inject_') || 
                           attr.name.startsWith('data-extension-') || 
                           attr.name === 'inject_video_svd' ||
                           attr.name.startsWith('data-') && attr.name.includes('extension') ||
                           attr.name.includes('chrome-extension') ||
-                          attr.name.includes('moz-extension')) {
+                          attr.name.includes('moz-extension') ||
+                          attr.name.includes('firefox-extension') ||
+                          attr.name.startsWith('data-') && attr.name.includes('browser') ||
+                          attr.name.startsWith('data-') && attr.name.includes('addon')) {
                         body.removeAttribute(attr.name);
                       }
-                    }
+                    });
                   }
                   
-                  // Also clean up any extension-added elements
-                  const extensionElements = document.querySelectorAll('[data-extension], [inject_], [data-chrome-extension]');
-                  extensionElements.forEach(el => {
-                    if (el.parentNode) {
-                      el.parentNode.removeChild(el);
+                  // Clean up extension-added elements
+                  const extensionSelectors = [
+                    '[data-extension]',
+                    '[inject_]',
+                    '[data-chrome-extension]',
+                    '[data-moz-extension]',
+                    '[data-firefox-extension]',
+                    '[data-browser-extension]',
+                    '[data-addon]'
+                  ];
+                  
+                  extensionSelectors.forEach(selector => {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(el => {
+                      if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                      }
+                    });
+                  });
+                  
+                  // Clean up any script tags added by extensions
+                  const scripts = document.querySelectorAll('script[src*="extension"], script[src*="addon"]');
+                  scripts.forEach(script => {
+                    if (script.parentNode) {
+                      script.parentNode.removeChild(script);
                     }
                   });
                 } catch (e) {
@@ -85,11 +107,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <NoSSR>
+        <ClientOnly>
           <LanguageProvider>
             {children}
           </LanguageProvider>
-        </NoSSR>
+        </ClientOnly>
       </body>
     </html>
   );
