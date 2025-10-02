@@ -178,7 +178,7 @@ export function ProjectsSection() {
                           <Globe className="h-16 w-16 text-white" />
                         </div>
                         <p className="text-muted-foreground text-sm">
-                          Clique em "Ver Preview" para visualizar o projeto
+                          Clique em &quot;Ver Preview&quot; para visualizar o projeto
                         </p>
                       </div>
                     )}
