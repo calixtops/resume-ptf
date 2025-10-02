@@ -7,7 +7,7 @@ import { Button } from './Button'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function HeroSection() {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
   
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/30">

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { translations, Language, TranslationKeys } from '@/data/translations'
+import { translations, Language } from '@/data/translations'
 
 interface LanguageContextType {
   language: Language
@@ -31,13 +31,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Função para obter tradução
   const t = (key: string): string => {
     const keys = key.split('.')
-    let value: any = translations[language]
+    let value: unknown = translations[language]
     
     for (const k of keys) {
-      value = value?.[k]
+      if (value && typeof value === 'object' && k in value) {
+        value = (value as Record<string, unknown>)[k]
+      } else {
+        return key
+      }
     }
     
-    return value || key
+    return typeof value === 'string' ? value : key
   }
 
   return (
