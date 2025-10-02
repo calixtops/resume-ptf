@@ -125,6 +125,11 @@ export const experiences = [
 
 export const education = [
   {
+    year: "2024",
+    degree: "Pós-graduação Lato Sensu, Especialização em Energias Renováveis",
+    institution: "Instituto Centro de Ensino Tecnológico do Ceará - Fortaleza, CE"
+  },
+  {
     year: "2016",
     degree: "Mestrado em Ciências",
     institution: "Universidade de São Paulo - São Paulo, SP"
