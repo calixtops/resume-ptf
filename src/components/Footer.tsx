@@ -18,7 +18,7 @@ export function Footer() {
             <FooterContent />
           </NoSSR>
           <p className="text-muted-foreground/70 text-sm">
-            Desenvolvido com ❤️ usando Next.js, TypeScript e Tailwind CSS
+            Desenvolvido usando Next.js, TypeScript e Tailwind CSS
           </p>
         </div>
       </div>
